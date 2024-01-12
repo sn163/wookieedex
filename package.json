@@ -1,7 +1,9 @@
 {
-  "name": "my-app",
+  "name": "wookieedex",
   "version": "0.1.0",
+  "homepage": "https://wookieedex.sonnyn.dev",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -10,17 +12,27 @@
     "@types/node": "^16.18.70",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
+    "typesync": "^0.12.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "dev": "run-p watch:tw start",
+    "prebuild": "npm run build:tw",
+    "build": "craco build",
+    "build:tw": "postcss ./src/index.css -o ./public/index.css",
+    "watch:tw": "postcss -w ./src/index.css  -o ./public/index.css",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint --no-error-on-unmatched-pattern src/",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write src"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +53,20 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@types/eslint": "^8.56.2",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint-plugin-prettier": "^3.1.3",
+    "@types/prettier": "^3.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.1"
   }
 }
