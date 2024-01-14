@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import "./App.css";
+import Home from "./collections/Home";
 //import Films from './collections/Films';
-import uuid from "react-uuid";
 
 // {
 //   "films": "https://swapi.dev/api/films/",
@@ -13,37 +12,9 @@ import uuid from "react-uuid";
 // }
 
 function App() {
-  const [collections, setCollections] = useState<string[]>([]);
-  const id = uuid();
-
-  useEffect(() => {
-    fetch("https://swapi.dev/api/")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Object.keys(data).length) {
-          setCollections(Object.keys(data) as string[]);
-        }
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("https://swapi.dev/people/1/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
-
   return (
     <div className="App">
-      <div className="mt-10 flex items-start justify-center space-x-10">
-        {collections &&
-          collections.map((col, idx) => (
-            <button key={`${id}-${idx}`} className="btn btn-blue">
-              {col.charAt(0).toUpperCase() + col.slice(1)}
-            </button>
-          ))}
-      </div>
+      <Home />
     </div>
   );
 }

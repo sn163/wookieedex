@@ -485,31 +485,38 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.mt-10 {
+.my-10 {
   margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 .flex {
   display: flex;
 }
-.h-full {
-  height: 100%;
+.hidden {
+  display: none;
 }
-.w-full {
-  width: 100%;
+.flex-col {
+  flex-direction: column;
 }
 .items-start {
   align-items: flex-start;
 }
+.items-center {
+  align-items: center;
+}
 .justify-center {
   justify-content: center;
-}
-.justify-around {
-  justify-content: space-around;
 }
 .space-x-10 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2.5rem * var(--tw-space-x-reverse));
   margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.border-2 {
+  border-width: 2px;
+}
+.p-10 {
+  padding: 2.5rem;
 }
 
 code {

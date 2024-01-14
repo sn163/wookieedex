@@ -1,4 +1,4 @@
 export default function Species() {
     
-    return (<div>N/A</div>)
+return (<div>N/A</div>)
 }

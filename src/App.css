@@ -2,20 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -41,9 +27,8 @@
   }
 }
 
-
 .btn {
-  @apply font-bold py-2 px-4 rounded;
+  @apply rounded px-4 py-2 font-bold;
 }
 .btn-blue {
   @apply bg-blue-500 text-white;
@@ -51,7 +36,6 @@
 .btn-blue:hover {
   @apply bg-blue-700;
 }
-
 
 html {
   scroll-behavior: smooth;
