@@ -495,6 +495,9 @@ video {
 .hidden {
   display: none;
 }
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
 .flex-col {
   flex-direction: column;
 }
@@ -512,6 +515,9 @@ video {
   margin-right: calc(2.5rem * var(--tw-space-x-reverse));
   margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.text-wrap {
+  text-wrap: wrap;
+}
 .border-2 {
   border-width: 2px;
 }
@@ -522,5 +528,13 @@ video {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+.disabled\:opacity-75:disabled {
+  opacity: 0.75;
 }
 

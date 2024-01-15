@@ -1,21 +1,45 @@
 import { useEffect, useState } from "react";
 import { People } from "../utils/types";
 import { PeopleCard } from "../utils/PeopleCard";
+import uuid from "react-uuid";
+import Pagination from "../components/Pagination";
 
 export default function PeoplePage() {
-  const [person, setPerson] = useState<People>();
+  const [peopleList, setPeopleList] = useState<People[]>();
+  const [currentUrl, setCurrentUrl] = useState(
+    "https://swapi.dev/api/people/?page=1",
+  );
+  const [nextPageUrl, setNextPageUrl] = useState();
+  const [prevPageUrl, setPrevPageUrl] = useState();
+
+  const id = uuid();
 
   useEffect(() => {
-    fetch("https://swapi.dev/api/people/1/")
+    fetch(currentUrl)
       .then((res) => res.json())
       .then((data) => {
-        setPerson(data);
+        setNextPageUrl(data.next);
+        setPrevPageUrl(data.previous);
+        setPeopleList(data.results);
       });
-  }, []);
+  }, [currentUrl]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <PeopleCard character={person} />
+    <div>
+      <ul className="flex flex-col items-center justify-center">
+        {peopleList?.map((char, idx) => {
+          return (
+            <li key={`${id}-${idx}`}>
+              <PeopleCard character={char} />
+            </li>
+          );
+        })}
+      </ul>
+      <Pagination
+        nextPageUrl={nextPageUrl}
+        prevPageUrl={prevPageUrl}
+        setCurrentUrl={setCurrentUrl}
+      />
     </div>
   );
 }

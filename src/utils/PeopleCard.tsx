@@ -24,7 +24,7 @@ export const PeopleCard = ({ character }: PeopleCardProps) => {
   } = character;
 
   return (
-    <div className="flex flex-col items-start justify-center border-2 p-10">
+    <div className="flex flex-col items-start justify-center border-2 p-10 text-wrap">
       <span>Name: {name}</span>
       <span>Birth Year: {birth_year}</span>
       <span>Eye Color: {eye_color}</span>
