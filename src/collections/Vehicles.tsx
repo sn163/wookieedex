@@ -1,4 +1,3 @@
 export default function Vehicles() {
-    
-    return (<div>N/A</div>)
+  return <div>N/A</div>;
 }

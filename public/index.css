@@ -485,18 +485,39 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
 .flex {
   display: flex;
+}
+.grid {
+  display: grid;
 }
 .hidden {
   display: none;
 }
-.cursor-not-allowed {
-  cursor: not-allowed;
+.h-full {
+  height: 100%;
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;
@@ -510,10 +531,18 @@ video {
 .justify-center {
   justify-content: center;
 }
+.gap-4 {
+  gap: 1rem;
+}
 .space-x-10 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2.5rem * var(--tw-space-x-reverse));
   margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 .text-wrap {
   text-wrap: wrap;
@@ -521,12 +550,43 @@ video {
 .border-2 {
   border-width: 2px;
 }
-.p-10 {
-  padding: 2.5rem;
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+.border-b-yellow-400 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(250 204 21 / var(--tw-border-opacity));
+}
+.object-contain {
+  object-fit: contain;
+}
+.p-8 {
+  padding: 2rem;
+}
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -537,4 +597,3 @@ code {
 .disabled\:opacity-75:disabled {
   opacity: 0.75;
 }
-

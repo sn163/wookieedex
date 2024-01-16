@@ -21,18 +21,21 @@ export default function Pagination({
     }
   };
 
-
   return (
-    <div>
+    <div className="my-4">
       <button
-        className={`btn ${!prevPageUrl ?  "btn-gray" : "btn-blue"} disabled:btn-gray disabled:cursor-not-allowed disabled:opacity-75`}
+        className={`btn ${
+          !prevPageUrl ? "btn-gray" : "btn-yellow"
+        } disabled:btn-gray disabled:cursor-not-allowed disabled:opacity-75`}
         onClick={handlePrev}
         disabled={!prevPageUrl}
       >
         Previous
       </button>
       <button
-        className={`btn ${!nextPageUrl ?  "btn-gray": "btn-blue" }  btn-blue disabled:btn-gray disabled:cursor-not-allowed disabled:opacity-75`}
+        className={`btn ${
+          !nextPageUrl ? "btn-gray" : "btn-yellow"
+        }  btn-yellow disabled:btn-gray disabled:cursor-not-allowed disabled:opacity-75`}
         onClick={handleNext}
         disabled={!nextPageUrl}
       >

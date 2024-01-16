@@ -1,5 +1,6 @@
 export type People = {
   name: string;
+  img: string;
   birth_year: string;
   eye_color: string;
   gender: string;
@@ -12,4 +13,5 @@ export type People = {
   species: string[];
   starships: string[];
   vehicles: string[];
-}
+  url: string;
+};

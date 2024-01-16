@@ -6,6 +6,7 @@ import Planets from "./Planets";
 import Species from "./Planets";
 import Starships from "./Starships";
 import Vehicles from "./Vehicles";
+import axios from "axios";
 
 export default function Dashboard() {
   const [collections, setCollections] = useState<string[]>([]);
@@ -13,45 +14,57 @@ export default function Dashboard() {
   const id = uuid();
 
   useEffect(() => {
-    fetch("https://swapi.dev/api/")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Object.keys(data).length) {
-          setCollections(Object.keys(data) as string[]);
+    axios
+      .get("https://swapi.dev/api/")
+      .then((res) => {
+        if (Object.keys(res.data).length) {
+          setCollections(Object.keys(res.data) as string[]);
         }
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <ul className="container-fluid my-10 flex items-start justify-center space-x-10">
-        {collections &&
-          collections.map((col, idx) => (
-            <li key={`${id}-${idx}`}>
-              <button className="btn btn-blue" onClick={() => setSelected(col)}>
-                {col.charAt(0).toUpperCase() + col.slice(1)}
-              </button>
-            </li>
-          ))}
-      </ul>
-      <div className={`${selected === "people" ? "" : "hidden"}`}>
-        <PeoplePage />
+    <>
+      <nav className="container-fluid mx-auto mb-4 border-b-4 border-b-yellow-400 py-6">
+        <h1 className="text-center text-5xl">Wookieedex</h1>
+      </nav>
+
+      <div className="flex flex-col items-center justify-center">
+        <ul className="container-fluid my-10 flex items-start justify-center space-x-10">
+          {collections &&
+            collections.map((col, idx) => (
+              <li key={`${id}-${idx}`}>
+                <button
+                  className="btn btn-yellow"
+                  onClick={() => setSelected(col)}
+                >
+                  {col.charAt(0).toUpperCase() + col.slice(1)}
+                </button>
+              </li>
+            ))}
+        </ul>
+        <div className={`${selected === "people" ? "" : "hidden"}`}>
+          <PeoplePage />
+        </div>
+        <div className={`${selected === "films" ? "" : "hidden"}`}>
+          <Films />
+        </div>
+        <div className={`${selected === "planets" ? "" : "hidden"}`}>
+          <Planets />
+        </div>
+        <div className={`${selected === "species" ? "" : "hidden"}`}>
+          <Species />
+        </div>
+        <div className={`${selected === "starships" ? "" : "hidden"}`}>
+          <Starships />
+        </div>
+        <div className={`${selected === "vehicles" ? "" : "hidden"}`}>
+          <Vehicles />
+        </div>
       </div>
-      <div className={`${selected === "films" ? "" : "hidden"}`}>
-        <Films />
-      </div>
-      <div className={`${selected === "planets" ? "" : "hidden"}`}>
-        <Planets />
-      </div>
-      <div className={`${selected === "species" ? "" : "hidden"}`}>
-        <Species />
-      </div>
-      <div className={`${selected === "starships" ? "" : "hidden"}`}>
-        <Starships />
-      </div>
-      <div className={`${selected === "vehicles" ? "" : "hidden"}`}>
-        <Vehicles />
-      </div>
-    </div>
+    </>
   );
 }
