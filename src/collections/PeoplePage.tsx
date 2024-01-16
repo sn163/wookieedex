@@ -15,30 +15,28 @@ export default function PeoplePage() {
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [allPeopleList, setAllPeopleList] = useState<People[]>();
   const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
   const id = uuid();
 
   useEffect(() => {
-    // first page
-    setLoading(true);
+    //setLoading(true);
     let cancel: Canceler;
     axios
       .get("https://swapi.dev/api/people", {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {
-        // collect people from first page
         const numberOfPagesLeft = Math.ceil((res.data.count - 1) / 10);
         const promises = [];
-        // start at 2 as you already queried the first page
+
         for (let i = 1; i <= numberOfPagesLeft; i++) {
           promises.push(axios.get(`https://swapi.dev/api/people/?page=${i}`));
         }
         return Promise.all(promises);
       })
       .then((res) => {
-        setLoading(false);
+        //setLoading(false);
         setAllPeopleList(
           res
             .reduce(
@@ -58,7 +56,6 @@ export default function PeoplePage() {
       .catch((error) => console.log(error));
     () => cancel();
   }, []);
-  console.log(allPeopleList);
 
   useEffect(() => {
     axios
