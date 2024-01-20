@@ -22,7 +22,3 @@ export type People = {
   vehicles: string[];
   url: string;
 }
-
-// export interface PeoplePage extends PageData{
-//   results: People[]
-// }
