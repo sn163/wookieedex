@@ -5,7 +5,7 @@ import uuid from "react-uuid";
 import Pagination from "../components/Pagination";
 import axios, { Canceler } from "axios";
 import SearchBar from "../components/SearchBar";
-// import { cache } from "../utils/cache"
+import cache from "../utils/cache"
 
 export default function PeoplePage() {
   const [peopleList, setPeopleList] = useState<People[]>();
@@ -20,26 +20,26 @@ export default function PeoplePage() {
 
   const id = uuid();
 
-
-  
   useEffect(() => {
     //setLoading(true);
     let cancel: Canceler;
-    axios
+    cache
       .get("https://swapi.dev/api/people", {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {
+        console.log('res: ', res)
         const numberOfPagesLeft = Math.ceil((res.data.count - 1) / 10);
         const promises = [];
 
         for (let i = 1; i <= numberOfPagesLeft; i++) {
-          promises.push(axios.get(`https://swapi.dev/api/people/?page=${i}`));
+          promises.push(cache.get(`https://swapi.dev/api/people/?page=${i}`));
         }
         return Promise.all(promises);
       })
       .then((res) => {
         //setLoading(false);
+        console.log('promises all: ', res)
         setAllPeopleList(
           res
             .reduce(
@@ -61,9 +61,10 @@ export default function PeoplePage() {
   }, []);
 
   useEffect(() => {
-    axios
+    cache
       .get(currentUrl)
       .then((res) => {
+        console.log(res.data);
         setNextPageUrl(res.data.next);
         setPrevPageUrl(res.data.previous);
         setPeopleList(

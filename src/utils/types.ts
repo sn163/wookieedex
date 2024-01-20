@@ -1,10 +1,3 @@
-export type PageData <Data> = {
-  count: number;
-  next: string | null; 
-  previous: string | null;
-  results: Data;
-}
-
 export type People = {
   name: string;
   img: string;
@@ -21,8 +14,4 @@ export type People = {
   starships: string[];
   vehicles: string[];
   url: string;
-}
-
-// export interface PeoplePage extends PageData{
-//   results: People[]
-// }
+};

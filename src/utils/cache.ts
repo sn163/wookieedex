@@ -1,20 +1,17 @@
-import axios, { AxiosResponse, CancelToken} from "axios";
-import { PageData, People } from './types';
+import axios, { Canceler } from "axios";
 
-
-type Options = {
-  cancelToken: CancelToken
-}
-
-export const cache = {
-  get: (url: string, options?: Options): PageData<People> | Promise<AxiosResponse> => {
+export default {
+  get: (url: string, ...params: any[]) =>{
+    // const url = params[0]
     const storedData = localStorage.getItem(url)
     
     if (storedData) {
-    return JSON.parse(storedData);
+    return new Promise((resolve) => {
+      resolve(JSON.parse(storedData));
+      });
     } else {
       return (
-          axios.get(url, options)
+          axios.get(url, ...params)
             .then(res => {
               localStorage.setItem(url, JSON.stringify(res))
               return res
