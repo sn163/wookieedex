@@ -2,12 +2,17 @@ import axios, { AxiosResponse, CancelToken} from "axios";
 import { PageData, People } from './types';
 
 
-type Options = {
+type AxiosOptions = {
   cancelToken: CancelToken
 }
 
-export const cache = {
-  get: (url: string, options?: Options): PageData<People> | Promise<AxiosResponse> => {
+type Cache = {
+  get: (url: string, options?: AxiosOptions) => PageData<People> | Promise<AxiosResponse>;
+  store: (key: string, val: string) => void;
+}
+
+export const cache: Cache = {
+  get: (url, options) => {
     const storedData = localStorage.getItem(url)
     
     if (storedData) {
@@ -22,5 +27,5 @@ export const cache = {
         )
     }
   },
-  store: (key: string, val:object | string) => localStorage.setItem(key, JSON.stringify(val))
+  store: (key, val) => localStorage.setItem(key, JSON.stringify(val))
 }
