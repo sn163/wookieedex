@@ -8,7 +8,9 @@ type AxiosOptions = {
 
 type Cache = {
   get: (url: string, options?: AxiosOptions) => PageData<People> | Promise<AxiosResponse>;
-  store: (key: string, val: string) => void;
+  set: (key: string, val: string) => void;
+  clear: () => void;
+  delete: (key: string) => void;
 }
 
 export const cache: Cache = {
@@ -19,13 +21,15 @@ export const cache: Cache = {
     return JSON.parse(storedData);
     } else {
       return (
-          axios.get(url, options)
-            .then(res => {
-              localStorage.setItem(url, JSON.stringify(res))
-              return res
-            })
-        )
+        axios.get(url, options)
+          .then(res => {
+            localStorage.setItem(url, JSON.stringify(res))
+            return res
+          })
+      )
     }
   },
-  store: (key, val) => localStorage.setItem(key, JSON.stringify(val))
+  set: (key, val) => localStorage.setItem(key, JSON.stringify(val)),
+  clear: localStorage.clear,
+  delete: localStorage.removeItem,
 }
